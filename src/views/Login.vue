@@ -70,7 +70,9 @@ export default {
     emailRules: [
       v => !!v || "El correo electrónico es requerido",
       v => /.+@.+\..+/.test(v) || "El correo electrónico no es válido",
-      v => /.+@logikoss.com/.test(v) || "El correo electrónico no tiene un dominio autorizado",
+      v =>
+        /.+@logikoss.com/.test(v) ||
+        "El correo electrónico no tiene un dominio autorizado"
     ],
     passwordRules: [v => !!v || "La contraseña es requerida"]
   }),
@@ -100,7 +102,10 @@ export default {
         )
         .then(function(response) {
           if (response.data && response.data.access_token) {
-            return setAuthToken(response.data.access_token, response.data.token_type);
+            return setAuthToken(
+              response.data.access_token,
+              response.data.token_type
+            );
           }
           throw Error("Error on receive auth token");
         })

@@ -1,24 +1,28 @@
 <template>
-  <v-toolbar dark color="teal">
-    <v-toolbar-title>Búsqueda Git</v-toolbar-title>
-    <v-autocomplete
-      v-on:change="testChange"
-      v-model="select"
-      :loading="loading"
-      :items="items"
-      :search-input.sync="search"
-      cache-items
-      class="mx-4"
-      flat
-      hide-no-data
-      hide-details
-      label="Ingresa un término de búsqueda"
-      solo-inverted
-    ></v-autocomplete>
-    <v-btn icon>
-      <v-icon>mdi-git</v-icon>
-    </v-btn>
-  </v-toolbar>
+  <v-row>
+    <v-col cols="12">
+      <v-toolbar dark color="teal">
+        <v-toolbar-title>Búsqueda Git</v-toolbar-title>
+        <v-autocomplete
+          v-on:change="testChange"
+          v-model="select"
+          :loading="loading"
+          :items="items"
+          :search-input.sync="search"
+          cache-items
+          class="mx-4"
+          flat
+          hide-no-data
+          hide-details
+          label="Ingresa un término de búsqueda"
+          solo-inverted
+        ></v-autocomplete>
+        <v-btn icon>
+          <v-icon>mdi-git</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -35,11 +39,11 @@ export default {
     cache: []
   }),
   watch: {
-    search: debounce(function(val){
-      if(val && val !== this.select) {
+    search: debounce(function(val) {
+      if (val && val !== this.select) {
         this.querySelections(val);
       }
-    }, 500),
+    }, 500)
   },
   methods: {
     querySelections(v) {
@@ -56,7 +60,10 @@ export default {
         });
     },
     testChange(textSearch) {
-      this.$emit('item-selected', this.cache.filter(item => item.full_name === textSearch));
+      this.$emit(
+        "item-selected",
+        this.cache.filter(item => item.full_name === textSearch)
+      );
     }
   }
 };
