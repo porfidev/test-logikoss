@@ -101,7 +101,7 @@ export default {
         )
         .then(function(response) {
           if (response.data && response.data.access_token) {
-            return setAuthToken(response.data.access_token);
+            return setAuthToken(response.data.access_token, response.data.token_type);
           }
           throw Error("Error on receive auth token");
         })

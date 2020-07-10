@@ -3,13 +3,20 @@ export const isAuthenticated = () => {
   return authToken;
 };
 
-export const setAuthToken = async token => {
+export const setAuthToken = async (token, tokenType = "") => {
   return new Promise((resolve, reject) => {
     try {
       localStorage.setItem("authToken", token);
+      localStorage.setItem("tokenType", tokenType);
       resolve();
     } catch (e) {
       reject(e);
     }
   });
+};
+
+export const getAuthToken = () => {
+  const authToken = localStorage.getItem("authToken");
+  const tokenType = localStorage.getItem("tokenType");
+  return { authToken, tokenType };
 };
