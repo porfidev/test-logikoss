@@ -57,6 +57,8 @@
 
 <script>
 import axios from "axios";
+import { setAuthToken } from "@/helpers/Auth";
+
 export default {
   name: "Login.vue",
 
@@ -67,7 +69,8 @@ export default {
     validForm: true,
     emailRules: [
       v => !!v || "El correo electrónico es requerido",
-      v => /.+@.+\..+/.test(v) || "El correo electrónico no es válido"
+      v => /.+@.+\..+/.test(v) || "El correo electrónico no es válido",
+      v => /.+@logikoss.com/.test(v) || "El correo electrónico no tiene un dominio autorizado",
     ],
     passwordRules: [v => !!v || "La contraseña es requerida"]
   }),
@@ -97,7 +100,13 @@ export default {
           { headers: { "x-app": "B2B" } }
         )
         .then(function(response) {
-          console.log(response);
+          if (response.data && response.data.access_token) {
+            return setAuthToken(response.data.access_token);
+          }
+          throw Error("Error on receive auth token");
+        })
+        .then(function() {
+          self.$router.push({ name: "Home" });
         })
         .catch(function(error) {
           self.showError = true;
