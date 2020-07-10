@@ -51,15 +51,12 @@ export default {
         .then(response => {
           console.log(response);
           self.cache = response.data.items;
-          self.items = response.data.items.map(item => item.name);
+          self.items = response.data.items.map(item => item.full_name);
           self.loading = false;
         });
     },
-    testChange() {
-      const self = this;
-      console.log('test', self.search);
-      this.$emit('item-selected', this.cache.filter(item => item.name === self.search));
-      console.log('item', this.cache.filter(item => item.name === self.search));
+    testChange(textSearch) {
+      this.$emit('item-selected', this.cache.filter(item => item.full_name === textSearch));
     }
   }
 };

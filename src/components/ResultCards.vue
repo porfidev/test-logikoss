@@ -16,13 +16,10 @@
           <v-list-item-subtitle>{{ card.description }}</v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+        <v-list-item-avatar tile size="80" color="grey">
+          <img v-bind:src="card.owner.avatar_url" alt="avatar" />
+        </v-list-item-avatar>
       </v-list-item>
-
-      <v-card-actions>
-        <v-btn text>Button</v-btn>
-        <v-btn text>Button</v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -31,7 +28,7 @@
 export default {
   name: "ResultCards.vue",
   props: {
-    cards: Array
+    cards: Array,
   }
 };
 </script>

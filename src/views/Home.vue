@@ -27,22 +27,19 @@ import ResultCards from '@/components/ResultCards';
 import SearchGit from '@/components/SearchGit';
 import Sidebar from '@/components/Sidebar';
 // @ is an alias to /src
-// import axios from "axios";
-// import { getAuthToken } from "@/helpers/Auth";
 
 export default {
   name: "Home",
   components: {ResultCards, SearchGit, Sidebar},
   props: {
     source: String,
-    cards: [],
   },
   data: () => ({
     drawer: true,
+    cards: [],
   }),
   methods: {
     fillResultCards(cards){
-      console.log("Cartitas TOP",cards);
       this.cards = cards;
     }
   }

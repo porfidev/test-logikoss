@@ -81,7 +81,6 @@ export default {
 
   methods: {
     validateLoginForm: function() {
-      console.log("validando tu formulario");
       this.validForm = this.$refs.loginForm.validate();
 
       if (this.validForm) {
@@ -110,7 +109,7 @@ export default {
         })
         .catch(function(error) {
           self.showError = true;
-          console.log(error);
+          console.error(error);
         });
     }
   }

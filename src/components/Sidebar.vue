@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { deleteAuthToken, getAuthToken } from '@/helpers/Auth';
+import { deleteAuthToken, getAuthToken } from "@/helpers/Auth";
 import axios from "axios";
 
 export default {
@@ -48,7 +48,6 @@ export default {
         }
       })
       .then(response => {
-        console.log(response);
         self.email = response.data.email;
         self.avatar = "https://randomuser.me/api/portraits/men/17.jpg";
       });
@@ -73,7 +72,7 @@ export default {
         })
         .catch(function(error) {
           self.showError = true;
-          console.log(error);
+          console.error(error);
         });
     }
   }

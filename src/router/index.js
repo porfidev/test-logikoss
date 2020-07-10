@@ -35,7 +35,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('ento');
   if (to.name !== "Login" && !isAuthenticated()) next({ name: "Login" });
   else next();
 });
