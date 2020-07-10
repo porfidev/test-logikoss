@@ -20,3 +20,8 @@ export const getAuthToken = () => {
   const tokenType = localStorage.getItem("tokenType");
   return { authToken, tokenType };
 };
+
+export const deleteAuthToken = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("tokenType");
+}
